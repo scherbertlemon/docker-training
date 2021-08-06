@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeting-depl
+spec:
+  selector:
+    matchLabels:
+      app: greetingapp
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: greetingapp
+    spec:
+      containers:
+      - name: greet
+        image: scherbertlemon/greeting:0.2
+        ports:
+        - containerPort: 5000
+      - name: post
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          value: holymoly

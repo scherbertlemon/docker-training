@@ -1,0 +1,187 @@
+\documentclass[aspectratio=169,usenames, dvipsnames, 11pt]{beamer}
+
+% theme determines the design in terms of shapes in the presentation
+\usetheme{madrid}
+% themes are:
+% AnnArbor
+% Antibes
+% Bergen
+% Berkeley
+% Berlin
+% Boadilla
+% CambridgeUS
+% Copenhagen
+% Darmstadt
+% Dresden
+% Frankfurt
+% Freiburg
+% Goettingen
+% Hannover
+% Ilmenau
+% JuanLesPins
+% Luebeck
+% Madrid
+% Malmoe
+% Marburg
+% Montpellier
+% PaloAlto
+% Pittsburgh
+% Rochester
+% Singapore
+% Szeged
+% Warsaw
+%
+% from: https://www.namsu.de/latex/themes/uebersicht_beamer.html
+
+% combining inner and outer themes
+%\useoutertheme{infolines}
+% available outer themes
+% from: https://www.namsu.de/latex/themes/outer.html
+% infolines
+% miniframes
+% shadow
+% sidebar
+% smoothbars
+% smoothtree
+% split
+% tree
+
+\useinnertheme{rectangles}
+% available inner themes
+% from: https://www.namsu.de/latex/themes/inner.html
+% circles
+% rounded
+% rectangles
+
+% explicitly prevent rounded blocks and shadows
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{blocks}[default]
+
+% title page
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=false]
+
+% The color theme defines the color used for a theme.
+% One can set all custom colors, or just apply one color to the structrue of the presentation
+
+% own color
+\definecolor{mycolor}{rgb}{0.0,0.35,0.6}
+\definecolor{lightgray}{RGB}{212,212,212}
+\definecolor{mgray}{RGB}{132,132,132}
+\definecolor{orange}{RGB}{230,113,43}
+\definecolor{purpel}{rgb}{0.5,0,0.5}
+\definecolor{grun}{rgb}{0.0,0.4,0.0}
+\definecolor{blau}{rgb}{0.1,0.3,0.5}
+
+\usecolortheme[named=mycolor]{structure}
+
+% Color names from xcolor package can be used
+% from: https://en.wikibooks.org/wiki/LaTeX/Colors#Predefined_colors
+%	Apricot 	  	  	Aquamarine
+%	Bittersweet 	  	Black
+%	Blue 	  	  	  	BlueGreen
+%	BlueViolet 	  	  	BrickRed
+%	Brown 	  	  	  	BurntOrange
+%	CadetBlue 	  	  	CarnationPink
+%	Cerulean 	  	  	CornflowerBlue
+%	Cyan 	  	  	  	Dandelion
+%	DarkOrchid 	  	  	Emerald
+%	ForestGreen 	  	Fuchsia
+%	Goldenrod 	  	  	Gray
+%	Green 	  	  	  	GreenYellow
+%	JungleGreen 	  	Lavender
+%	LimeGreen 	  	  	Magenta
+%	Mahogany 	  	  	Maroon
+%	Melon 	  	  	  	MidnightBlue
+%	Mulberry 	  	  	NavyBlue
+%	OliveGreen 	  	  	Orange
+%	OrangeRed 	  	  	Orchid
+%	Peach 	  	  	  	Periwinkle
+%	PineGreen 	  	  	Plum
+%	ProcessBlue 	  	Purple
+%	RawSienna 	  	  	Red
+%	RedOrange 	  	  	RedViolet
+%	Rhodamine 	  	  	RoyalBlue
+%	RoyalPurple 	  	RubineRed
+%	Salmon 	  	  	  	SeaGreen
+%	Sepia 	  	  	  	SkyBlue
+%	SpringGreen 	  	Tan
+%	TealBlue 	  	  	Thistle
+%	Turquoise 	  	  	Violet
+%	VioletRed 	  	  	White
+%	WildStrawberry 	  	Yellow
+%	YellowGreen 	  	YellowOrange
+
+% Using tikz for charts, diagrams
+\usepackage{tikz}
+% for relative positioning
+\usetikzlibrary{positioning}
+
+\usepackage[utf8]{inputenc}
+\usepackage{PTSans}
+\usepackage{inconsolata}
+\usepackage{listings}
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	language=bash,
+	showstringspaces=false,	% do not emphasize spaces in strings
+	tabsize=4,				% number of spaces of a TAB
+	mathescape=false,		% Dont escape to math mode with $
+	escapechar=§,			% escape to latex with §...§
+	upquote=false,			% upright quotes (aus lassen, gibt Fehler)
+	columns=fixed,			% nice spacing
+	backgroundcolor=\color{lightgray}, % background color
+	stringstyle=\color{purpel},
+	commentstyle=\color{grun},
+	xleftmargin=0.1cm,
+	frame=l,
+	rulecolor=\color{mgray},
+	framerule=2pt,
+	keywordstyle=\color{blau},
+	morekeywords={FROM, ENV, ADD, COPY, RUN, CMD, ENTRYPOINT, ARG, LABEL, WORKDIR}
+}
+
+% Some custom inline text decoration
+\newcommand{\hervor}[1]{\textcolor{orange}{#1}}
+\newcommand{\codi}[1]{\colorbox{lightgray}{\texttt{\footnotesize#1}}} 
+\newcommand{\myhref}[2]{\href{#1}{\textcolor{mycolor}{\underline{#2}}}} 
+\newcommand{\bs}{\textbackslash}
+
+\newcommand{\sectionslide}[1]{
+	{
+		\setbeamercolor{background canvas}{bg=mycolor}
+		\begin{frame}[noframenumbering]
+			\thispagestyle{empty}
+			\textcolor{white}{\Huge #1}
+		\end{frame}
+	}
+	
+}
+% remove navigation symbols
+\beamertemplatenavigationsymbolsempty
+
+% Titlepage data
+\title{Virtualization with Containers and Kubernetes}
+\author{Andreas Roth}
+\date{09.06.2021}
+\subtitle{Introduction with a focus on Docker}
+\institute{Training}
+
+% start the document
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Contents}
+	\tableofcontents
+\end{frame}
+
+\input{intro}
+\input{docker}
+\input{kubernetes}
+
+\sectionslide{Thank you for participating!}
+
+\end{document}

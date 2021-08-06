@@ -1,0 +1,17 @@
+services:
+    greet:
+        image: greeting:0.2
+        build: ./0.2/
+        ports:
+            - "5000:5000"
+        environment:
+            - PG_HOST=post
+    post:
+        image: postgres:latest
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=holymoly
+volumes:
+    pgdata:
+        external: True
