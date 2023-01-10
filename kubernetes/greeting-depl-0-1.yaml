@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeting-depl
+spec:
+  selector:
+    matchLabels:
+      app: greetingapp
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: greetingapp
+    spec:
+      containers:
+      - name: greet
+        image: scherbertlemon/greeting:0.1
+        ports:
+        - containerPort: 5000
