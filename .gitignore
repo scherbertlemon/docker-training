@@ -3,3 +3,4 @@ cenv/*
 .ipynb_checkpoints/*
 *.kra~
 *.png~
+.DS_STORE
